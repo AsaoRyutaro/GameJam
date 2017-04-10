@@ -25,7 +25,10 @@ CharacterLayer::CharacterLayer()
 ******************************************************************/
 CharacterLayer::~CharacterLayer()
 {
-
+	if (m_pCharas != nullptr)
+	{
+		delete[] m_pCharas;
+	}
 }
 
 /*****************************************************************
@@ -45,7 +48,13 @@ bool CharacterLayer::init()
 
 
 	// •¶š‚Ì‰Šú‰»
-
+	m_pCharas = new Chara*[10];
+	for (int i = 0; i < 10; i++)
+	{
+		m_pCharas[i] = Chara::create(8 + (i % 2), i % 5);
+		m_pCharas[i]->setPosition(Vec2(i % 5 * 128.0f + 240.0f, (i % 2) * 128.0f + 120.0f));
+		addChild(m_pCharas[i]);
+	}
 
 	// ŠÅ”Â‚Ì‰Šú‰»
 	m_pSignBoard = SignBoard::create("ƒSƒŠƒ‰");
@@ -73,6 +82,7 @@ bool CharacterLayer::init()
 ******************************************************************/
 bool CharacterLayer::onTap(cocos2d::Vec2 pos)
 {
+
 	return false;
 }
 

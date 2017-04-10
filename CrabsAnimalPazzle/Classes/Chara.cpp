@@ -50,6 +50,9 @@ bool Chara::init(int a, int b)
 {
 	m_CharData = a;
 	m_sprite = cocos2d::Sprite::create("moji.png");
+	m_sprite->setScale(1.0f / 3.0f);
+	int rotate = rand() % 360 - 180;
+	m_sprite->setRotation(rotate);
 	const int size = 196.0f;
 	m_sprite->setTextureRect(cocos2d::Rect(a*size,b*size,size,size));
 	addChild(m_sprite);
