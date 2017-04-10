@@ -15,6 +15,8 @@ private:
 	// ƒŒƒCƒ„[
 	CharacterLayer* m_pCharacterLayer;
 
+	// ”wŒi‰æ‘œ
+
 public:
 	PlayScene();
 	~PlayScene();

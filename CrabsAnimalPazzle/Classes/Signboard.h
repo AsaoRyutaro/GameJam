@@ -1,12 +1,13 @@
 /******************************************************************
-*|　概要　　看板
-*|　作成者　GS1_04_牛山航平
-*|　作成日　2017/04/07
-*|
+*|　概要　　　　看板
+*|　作成者　　　GS1_04_牛山航平
+*|　作成日　　　2017/04/07
+*|　最終更新日　2017/04/10
 *******************************************************************/
 /* -- ファイルのインクルード ---- */
 #pragma once
 #include "cocos2d.h"
+#include"Classes\Chara.h"
 
 class SignBoard : public cocos2d::Node
 {
@@ -29,12 +30,21 @@ public:
 	bool init(std::string anserString);
 
 	// 正解かどうかを判定する
-	bool isCorrectAnswer(std::string playerAnser);
+	bool isCorrectAnswer(Chara* playerAnser);
 
 	// 正解時の処理
-	void corect();
+	cocos2d::Node* corect();
 
 	// 不正解時の処理
 	void incorect();
+
+	// クリア判定
+	bool isClear();
+
+	// スプライトを取得する
+	cocos2d::Sprite** getSprites();
+
+	// 現在何文字埋まっているかを取得する
+	int getNowTextNum();
 };
 

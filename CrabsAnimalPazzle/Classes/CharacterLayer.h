@@ -11,12 +11,13 @@
 #include "EventListenerGesture.h"
 #include "Classes\Signboard.h"
 #include "Classes\Chara.h"
+#include "Classes\Crab.h"
 
 class  CharacterLayer:public cocos2d::Layer
 {
 private:
 	// 蟹
-
+	Crab* m_pPlayer;
 
 	// 文字
 	Chara** m_pCharas;
@@ -30,6 +31,14 @@ public:
 
 	CREATE_FUNC(CharacterLayer);
 	bool init();
+
+	void update(float delta)override;
+
+	// 正解時の関数
+	void corect();
+
+	// 不正解時の関数
+	void incorect();
 
 	// タッチ関係の関数
 	bool onTap(cocos2d::Vec2 pos);

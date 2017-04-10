@@ -40,6 +40,8 @@ bool PlayScene::init()
 		return false;
 	}
 
+	// 背景画像の初期化
+
 	// キャラクターレイヤーの初期化
 	m_pCharacterLayer = CharacterLayer::create();
 	addChild(m_pCharacterLayer);

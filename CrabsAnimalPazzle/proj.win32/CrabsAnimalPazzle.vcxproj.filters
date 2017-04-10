@@ -36,6 +36,12 @@
     <ClCompile Include="..\Classes\Signboard.cpp">
       <Filter>src\MyFilter</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Chara.cpp">
+      <Filter>src\MyFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Crab.cpp">
+      <Filter>src\MyFilter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -57,6 +63,12 @@
       <Filter>src\MyFilter</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Signboard.h">
+      <Filter>src\MyFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Chara.h">
+      <Filter>src\MyFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Crab.h">
       <Filter>src\MyFilter</Filter>
     </ClInclude>
   </ItemGroup>

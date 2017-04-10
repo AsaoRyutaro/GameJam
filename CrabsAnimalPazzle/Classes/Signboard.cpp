@@ -1,8 +1,8 @@
 /******************************************************************
-*|　概要　　看板
-*|　作成者　GS1_04_牛山航平
-*|　作成日　2017/04/10
-*|
+*|　概要　　　　看板
+*|　作成者　　　GS1_04_牛山航平
+*|　作成日　　　2017/04/10
+*|　最終更新日　2017/04/10
 *******************************************************************/
 /* -- ファイルのインクルード ---- */
 #pragma once
@@ -86,11 +86,12 @@ bool SignBoard::init(std::string anserString)
 *　引数　　無し
 *　戻り値　正解ならtrue
 ******************************************************************/
-bool SignBoard::isCorrectAnswer(std::string playerAnser)
+bool SignBoard::isCorrectAnswer(Chara* playerAnser)
 {
 	// 次にはめる文字の正解と判定を取る
-	if (m_anser[m_nowText.size() + 1] == playerAnser[0] && m_anser[m_nowText.size() + 2] == playerAnser[1])
+	if (m_anser[m_nowText.size()] == playerAnser->getCharData()[0] && m_anser[m_nowText.size() + 1] == playerAnser->getCharData()[1])
 	{
+		m_nowText += playerAnser->getCharData();
 		return true;
 	}
 	else
@@ -102,27 +103,31 @@ bool SignBoard::isCorrectAnswer(std::string playerAnser)
 /*****************************************************************
 *　機能　　正解時の処理
 *　引数　　無し
-*　戻り値　無し
+*　戻り値　エフェクトのスプライトを集めたノード
 ******************************************************************/
-void SignBoard::corect()
+cocos2d::Node* SignBoard::corect()
 {
 	// 出す星の数を決める
-	int appearNum = (m_nowText.size() + 1) * 3;
+	int appearNum = (m_nowText.size()/2 + 1);
 
 	// 星を出す
 	Sprite** starSprite = new Sprite*[appearNum];
 
+	// エフェクトたちをまとめるノード
+	Node* sprites = Node::create();
+
 	for (int i = 0; i < appearNum; i++)
 	{
 		starSprite[i] = Sprite::create("small_star7_yellow.png");
-		starSprite[i]->setPosition(	m_pSprite[m_nowText.size() / 2]->getPosition().x,
-									m_pSprite[m_nowText.size() / 2]->getPosition().y);
+		starSprite[i]->setPosition(	m_pSprite[m_nowText.size() /2-1]->getPositionX() + this->getPositionX(),
+									m_pSprite[m_nowText.size() / 2-1]->getPositionY() + this->getPositionY());
 		starSprite[i]->setScale(0.1f);
-		addChild(starSprite[i]);
+		sprites->addChild(starSprite[i]);
 	
 		// 動かす
 		int a = (rand() % 128) * ((i % 3) - 1);
-		JumpTo* jump = JumpTo::create(0.5f, Vec2(a, -64.0f), 64.0f, 1);
+		int b = rand() % 128;
+		JumpBy* jump = JumpBy::create(0.5f, Vec2(a, -64.0f), b, 1);
 		int rote = (rand() % 356) - 128.0f;
 		RotateBy* rotate = RotateBy::create(0.5f, rote);
 		RemoveSelf* removeSelf = RemoveSelf::create();
@@ -132,6 +137,8 @@ void SignBoard::corect()
 		// アクションを起こす
 		starSprite[i]->runAction(act);
 	}
+
+	return sprites;
 }
 
 /*****************************************************************
@@ -142,4 +149,41 @@ void SignBoard::corect()
 void SignBoard::incorect()
 {
 
+}
+
+/*****************************************************************
+*　機能　　クリア判定
+*　引数　　無し
+*　戻り値　クリアしているならtrue
+******************************************************************/
+bool SignBoard::isClear()
+{
+	if (m_anser == m_nowText)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+/*****************************************************************
+*　機能　　スプライトの配列を取得する
+*　引数　　無し
+*　戻り値　スプライトの配列のポインタ
+******************************************************************/
+cocos2d::Sprite** SignBoard::getSprites()
+{
+	return m_pSprite;
+}
+
+/*****************************************************************
+*　機能　　現在何文字埋まっているかを取得する
+*　引数　　無し
+*　戻り値　現在の文字数
+******************************************************************/
+int SignBoard::getNowTextNum()
+{
+	return m_nowText.size()/2;
 }

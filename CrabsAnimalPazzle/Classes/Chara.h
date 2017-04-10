@@ -11,9 +11,15 @@ class Chara : public cocos2d::Node
 public:
 	Chara();
 	~Chara();
-	int ResetPotision();
+	void ResetPotision();
 	std::string GetChar();
-	static Chara* create(int a,int b);
-	bool init(int a, int b);
+	static Chara* create(int a,int b,std::string str);
+	bool init(int a, int b, std::string str);
+
+	cocos2d::Sprite* getSprite();
+	void setDefaultPotision(cocos2d::Vec2 pos);
+	cocos2d::Vec2 getDefaultPotision();
+
+	std::string getCharData();
 };
 
