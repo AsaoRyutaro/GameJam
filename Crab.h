@@ -15,7 +15,15 @@ private:
 public:
 	void Move(); //動く
 	
-	void Update();
+	void HavingCharacter();//文字を持つ
+
+	void ReleaseCharacter();//文字を離す
+
+	void CuttingCharacter();//文字を切る
+
+	void PutOn();//看板にはめる
+
+	void Animation();//アニメーション
 
 	virtual bool init();
 	
