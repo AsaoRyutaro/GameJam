@@ -9,6 +9,7 @@
 
 #include "cocos2d.h"
 #include "EventListenerGesture.h"
+#include "Classes\Signboard.h"
 
 class  CharacterLayer:public cocos2d::Layer
 {
@@ -20,6 +21,7 @@ private:
 
 
 	// ŠÅ”Â
+	SignBoard* m_pSignBoard;
 
 public:
 	 CharacterLayer();

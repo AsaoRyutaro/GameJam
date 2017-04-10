@@ -48,7 +48,9 @@ bool CharacterLayer::init()
 
 
 	// 看板の初期化
-
+	m_pSignBoard = SignBoard::create("ゴリラ");
+	m_pSignBoard->setPosition(640.0f, 540.0f);
+	addChild(m_pSignBoard);
 
 	/* イベントリスナーを制作する */
 	EventListenerGesture* listener = EventListenerGesture::create();

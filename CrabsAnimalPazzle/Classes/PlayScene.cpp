@@ -42,4 +42,5 @@ bool PlayScene::init()
 
 	// キャラクターレイヤーの初期化
 	m_pCharacterLayer = CharacterLayer::create();
+	addChild(m_pCharacterLayer);
 }

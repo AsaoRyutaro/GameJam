@@ -68,7 +68,7 @@ bool SignBoard::init(std::string anserString)
 	m_anser = anserString;
 
 	// スプライトを生成
-	m_pSprite = new Sprite*[anserString.size()];
+	m_pSprite = new Sprite*[anserString.size()/2];
 
 	// 正解の文字数分スプライトを作る
 	for (int i = 0; i < anserString.size()/2; i++)
