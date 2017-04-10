@@ -4,16 +4,22 @@
 
 #include "cocos2d.h"
 
-class Crab : public cocos2d::Layer
+class Crab : public cocos2d::Node
 {
 private:
+
+	//Sprite *Crab;
 	int x;	//À•WX
 	int y;	//À•WY
 
 
 
 public:
-	void Move(); //“®‚­
+	Crab();
+
+	~Crab();
+
+	void Move(cocos2d::Vec2 pos, cocos2d::Node *Crab); //“®‚­
 	
 	void HavingCharacter();//•¶š‚ğ‚Â
 
@@ -27,8 +33,6 @@ public:
 
 	virtual bool init();
 	
-	static cocos2d::Scene* crab();
-
 	CREATE_FUNC(Crab);
 
 
