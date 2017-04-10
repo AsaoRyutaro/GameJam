@@ -29,7 +29,7 @@ public:
 	bool init(std::string anserString);
 
 	// ³‰ğ‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
-	bool isCorrectAnswer(char playerAnser);
+	bool isCorrectAnswer(std::string playerAnser);
 
 	// ³‰ğ‚Ìˆ—
 	void corect();

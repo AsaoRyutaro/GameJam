@@ -68,7 +68,7 @@ bool SignBoard::init(std::string anserString)
 	m_anser = anserString;
 
 	// スプライトを生成
-	m_pSprite = new Sprite*[anserString.size()/2];
+	m_pSprite = new Sprite*[anserString.size()];
 
 	// 正解の文字数分スプライトを作る
 	for (int i = 0; i < anserString.size()/2; i++)
@@ -78,10 +78,6 @@ bool SignBoard::init(std::string anserString)
 		m_pSprite[i]->setPositionX(a * 64.0f);
 		addChild(m_pSprite[i]);
 	}
-
-	// 現在の文字列を初期化
-	m_nowText = "NULL";
-
 	return true;
 }
 
@@ -90,10 +86,10 @@ bool SignBoard::init(std::string anserString)
 *　引数　　無し
 *　戻り値　正解ならtrue
 ******************************************************************/
-bool SignBoard::isCorrectAnswer(char playerAnser)
+bool SignBoard::isCorrectAnswer(std::string playerAnser)
 {
 	// 次にはめる文字の正解と判定を取る
-	if (m_anser[m_nowText.size() + 1] == playerAnser)
+	if (m_anser[m_nowText.size() + 1] == playerAnser[0] && m_anser[m_nowText.size() + 2] == playerAnser[1])
 	{
 		return true;
 	}
@@ -110,7 +106,32 @@ bool SignBoard::isCorrectAnswer(char playerAnser)
 ******************************************************************/
 void SignBoard::corect()
 {
+	// 出す星の数を決める
+	int appearNum = (m_nowText.size() + 1) * 3;
 
+	// 星を出す
+	Sprite** starSprite = new Sprite*[appearNum];
+
+	for (int i = 0; i < appearNum; i++)
+	{
+		starSprite[i] = Sprite::create("small_star7_yellow.png");
+		starSprite[i]->setPosition(	m_pSprite[m_nowText.size() / 2]->getPosition().x,
+									m_pSprite[m_nowText.size() / 2]->getPosition().y);
+		starSprite[i]->setScale(0.1f);
+		addChild(starSprite[i]);
+	
+		// 動かす
+		int a = (rand() % 128) * ((i % 3) - 1);
+		JumpTo* jump = JumpTo::create(0.5f, Vec2(a, -64.0f), 64.0f, 1);
+		int rote = (rand() % 356) - 128.0f;
+		RotateBy* rotate = RotateBy::create(0.5f, rote);
+		RemoveSelf* removeSelf = RemoveSelf::create();
+		Spawn* spawn = Spawn::create(jump, rotate, nullptr);
+		Sequence* act = Sequence::create(spawn, removeSelf, nullptr);
+
+		// アクションを起こす
+		starSprite[i]->runAction(act);
+	}
 }
 
 /*****************************************************************
