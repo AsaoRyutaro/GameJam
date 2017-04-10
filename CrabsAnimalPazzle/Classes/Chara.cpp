@@ -25,11 +25,11 @@ std::string Chara::GetChar()
 	return m_CharData;
 }
 
-Chara * Chara::create(std::string a)
+Chara * Chara::create(int a, int b)
 {
     Chara *pRet = new(std::nothrow) Chara(); 
 
-    if (pRet && pRet->init(a)) 
+    if (pRet && pRet->init(a,b)) 
     { 
         pRet->autorelease(); 
         return pRet; 
@@ -46,10 +46,12 @@ Chara * Chara::create(std::string a)
 }
 
 // ‰Šú‰»
-bool Chara::init(std::string a)
+bool Chara::init(int a, int b)
 {
 	m_CharData = a;
 	m_sprite = cocos2d::Sprite::create("moji.png");
+	const int size = 196.0f;
+	m_sprite->setTextureRect(cocos2d::Rect(a*size,b*size,size,size));
 	addChild(m_sprite);
 	return true;
 }

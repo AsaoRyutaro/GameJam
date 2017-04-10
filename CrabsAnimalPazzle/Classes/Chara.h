@@ -13,7 +13,7 @@ public:
 	~Chara();
 	int ResetPotision();
 	std::string GetChar();
-	static Chara* create(std::string a);
-	bool init(std::string a);
+	static Chara* create(int a,int b);
+	bool init(int a, int b);
 };
 
