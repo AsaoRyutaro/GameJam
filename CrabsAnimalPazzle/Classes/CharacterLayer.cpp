@@ -49,7 +49,7 @@ bool CharacterLayer::init()
 
 	// ŠÅ”Â‚Ì‰Šú‰»
 	m_pSignBoard = SignBoard::create("‚²‚è‚ç");
-	m_pSignBoard->setPosition(640.0f, 540.0f);
+	m_pSignBoard->setPosition(720.0f, 455.0f);
 	addChild(m_pSignBoard);
 
 	// •¶š‚Ì‰Šú‰»

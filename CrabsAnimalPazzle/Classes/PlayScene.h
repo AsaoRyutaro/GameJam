@@ -16,6 +16,9 @@ private:
 	CharacterLayer* m_pCharacterLayer;
 
 	// ”wŒi‰æ‘œ
+	cocos2d::Sprite* m_pBackGroundImage;
+	cocos2d::Sprite* m_pGoriraImage;
+	cocos2d::Sprite* m_pSakuImage;
 
 public:
 	PlayScene();

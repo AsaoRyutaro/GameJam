@@ -41,6 +41,21 @@ bool PlayScene::init()
 	}
 
 	// 背景画像の初期化
+	m_pBackGroundImage = Sprite::create("backGroud.png");
+	m_pBackGroundImage->setPosition(Vec2(480.0f, 360.0f));
+	addChild(m_pBackGroundImage);
+
+
+	m_pGoriraImage = Sprite::create("Gorira.png");
+	m_pGoriraImage->setScale(0.5f);
+	m_pGoriraImage->setPosition(Vec2(440.0f, 440.0f));
+	addChild(m_pGoriraImage);
+
+	m_pSakuImage = Sprite::create("saku.png");
+	m_pSakuImage->setScale(0.9f);
+	m_pSakuImage->setPosition(Vec2(440.0f, 440.0f));
+	addChild(m_pSakuImage);
+
 
 	// キャラクターレイヤーの初期化
 	m_pCharacterLayer = CharacterLayer::create();
